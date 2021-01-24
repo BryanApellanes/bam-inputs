@@ -1,5 +1,5 @@
 var { expect } = require("chai"),
-    bamInputs = require('../../bam-inputs'),
+    bamInputs = require('../../inputs'),
     _ = require('underscore');
 
 describe("bam inputs", function () {

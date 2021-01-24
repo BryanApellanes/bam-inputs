@@ -84,14 +84,13 @@ var bamInputs = (function () {
             return result;
         },
         run: function (scriptArgs) {
-
             console.log(cliArgs.scriptInfo());
         }
     }
 })()
 
 if (typeof require !== 'undefined' && require.main === module) {
-    main.run(process.argv.slice(2));
+    bamInputs.run(process.argv.slice(2));
 }
 
 module.exports = bamInputs;
