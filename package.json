@@ -21,6 +21,8 @@
     "jasmine-spec-reporter": "^6.0.0"
   },
   "dependencies": {
-    "chai": "^4.2.0"
+    "@bamapps/bam-cli-args": "0.0.1",
+    "chai": "^4.2.0",
+    "underscore": "^1.12.0"
   }
 }
