@@ -1,0 +1,26 @@
+{
+  "name": "@bamapps/bam-inputs",
+  "version": "0.0.1",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "test": "jasmine"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BryanApellanes/bam-inputs.git"
+  },
+  "author": "Bryan Apellanes",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/BryanApellanes/bam-inputs/issues"
+  },
+  "homepage": "https://github.com/BryanApellanes/bam-inputs#readme",
+  "devDependencies": {
+    "jasmine": "^3.6.3",
+    "jasmine-spec-reporter": "^6.0.0"
+  },
+  "dependencies": {
+    "chai": "^4.2.0"
+  }
+}
