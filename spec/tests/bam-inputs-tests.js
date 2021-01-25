@@ -5,7 +5,7 @@ var { expect } = require("chai"),
 describe("bam inputs", function () {
     it("should parse args", function(){
         var cliArgs = bamInputs.toBamCliArgs({ test: 'test', file: 'file'});
-        expect(cliArgs).to.equal('/test:test /file:file')                
+        expect(cliArgs).to.equal('/test:test /file:file');
     })
 
     it("should parse bam cli args", function(){
@@ -35,8 +35,11 @@ describe("bam inputs", function () {
                 }
             }
         })
-        var bamArgsFromActionInputs = bamInputs.bamCliArgsFromActionInputs({value1: null, value2: null});
+        var bamArgsFromActionInputs = bamInputs.bamArgsFromActionInputs({value1: null, value2: null});
         expect(JSON.stringify(bamArgsFromActionInputs)).to.equal(JSON.stringify(inputs));
+
+        var bamCliArgsFromActionInputs = bamInputs.bamCliArgsFromActionInputs({value1: null, value2: null});
+        expect(bamCliArgsFromActionInputs).to.equal('/value1:"value one" /value2:"value two"');
     })
 
     it("should read environment", function () {        

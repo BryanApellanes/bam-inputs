@@ -14,7 +14,7 @@ var bamInputs = (function () {
         },
         bamArgs: cliArgs.args,
         scriptInfo: cliArgs.scriptInfo,
-        bamCliArgsFromActionInputs: function(obj) {
+        bamArgsFromActionInputs: function(obj) {
             var ac = dependencies.actionsCore;
             var result = {};
             if(obj !== undefined && obj !== null){
@@ -23,6 +23,9 @@ var bamInputs = (function () {
                 }
             }
             return result;
+        },
+        bamCliArgsFromActionInputs: function(obj) {
+            return this.toBamCliArgs(this.bamArgsFromActionInputs(obj));
         },
         /**
          * Gets a BamArgs object from the environment.  If an object is specified
@@ -59,8 +62,12 @@ var bamInputs = (function () {
                     val = obj[prop] === null ? '': obj[prop];
                 
                 result += key;
-                if(val !== '' ){
-                    result += `:${val}`;
+                if (val !== '' ) {
+                    if (val.includes(' ')){
+                        result += `:"${val}"`;
+                    } else {
+                        result += `:${val}`;
+                    }
                 }
                 result += ' ';
             }
