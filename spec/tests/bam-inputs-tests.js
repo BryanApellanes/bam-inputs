@@ -1,6 +1,7 @@
 var { expect } = require("chai"),
     bamInputs = require('../../inputs'),
     _ = require('underscore');
+const { bamCliArgsFromActionInputs } = require("../../inputs");
 
 describe("bam inputs", function () {
     it("should parse args", function(){
@@ -24,25 +25,39 @@ describe("bam inputs", function () {
     })
 
     it("should read action core inputs", function(){
-        var inputs = {
+        var actionInputs = {
             value1: "value one",
             value2: "value two"
         }
         bamInputs.inject({
             actionsCore: {
                 getInput: function(name){
-                    return inputs[name];
+                    return actionInputs[name];
                 }
             }
         })
         var bamArgsFromActionInputs = bamInputs.bamArgsFromActionInputs({value1: null, value2: null});
-        expect(JSON.stringify(bamArgsFromActionInputs)).to.equal(JSON.stringify(inputs));
+        expect(JSON.stringify(bamArgsFromActionInputs)).to.equal(JSON.stringify(actionInputs));
 
-        var bamCliArgsFromActionInputs = bamInputs.bamCliArgsFromActionInputs({value1: null, value2: null});
+        var bamCliArgsFromActionInputs = bamInputs.bamCliArgsFromActionInputs({ value1: null, value2: null });
         expect(bamCliArgsFromActionInputs).to.equal('/value1:"value one" /value2:"value two"');
     })
 
-    it("should read environment", function () {        
-        console.log(process.env);
+    it("should use defaults if no action inputs", function () {
+        var actionInputs = {
+            value1: null,
+            value2: ""
+        }
+        bamInputs.inject({
+            actionsCore: {
+                getInput: function (name) {
+                    return actionInputs[name];
+                }
+            }
+        })
+        var defaultValues = { value1: "provided default", value2: "provided default 2" };
+        var bamArgsFromActionInputs = bamInputs.bamArgsFromActionInputs(defaultValues);
+
+        expect(JSON.stringify(bamArgsFromActionInputs)).to.equal(JSON.stringify(defaultValues));
     })
 });

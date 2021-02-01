@@ -20,6 +20,9 @@ var bamInputs = (function () {
             if(obj !== undefined && obj !== null){
                 for(var prop in obj){
                     result[prop] = ac.getInput(prop);
+                    if(result[prop] === '' || result[prop] === null){
+                        result[prop] = obj[prop];
+                    }
                 }
             }
             return result;
